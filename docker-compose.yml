@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  db:
+    image: mysql
+    container_name: mysql-container
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: alunos
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+# tentativa de build sem Dockerfile
+#  app:
+#    image: maven
+#    container_name: app-container
+#    volumes:
+#      - "../Aula\ Spring\ Boot:/deploy"
+#    working_dir: "/deploy"
+#    ports:
+#      - "8080:8080"
+#    command: /bin/bash -c "mvn clean && mvn install && java --illegal-access=permit -jar target/aula-spring-boot-1.0-SNAPSHOT.jar"
+#    depends_on:
+#      - db
+#    restart: always
