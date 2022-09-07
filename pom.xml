@@ -54,5 +54,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>aula-spring-boot</finalName>
     </build>
 </project>
